@@ -74,6 +74,7 @@ public class ResmiGetir extends Activity {
                     resim.setImageURI(uri);
                 }
             }
+            tostla(context,"adr:"+adres);
         } catch (Exception e) {
             tostla(context,"hata:"+e.toString());
         }
