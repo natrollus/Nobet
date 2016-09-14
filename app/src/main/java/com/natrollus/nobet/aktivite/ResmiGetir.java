@@ -63,12 +63,11 @@ public class ResmiGetir extends Activity {
     }
 
     private void resmiAyarla(Intent data, Context context) {
-        InputStream is;
         try {
-            is = context.getContentResolver().openInputStream(data.getData());
-            if (is!=null){
+            Uri icerik = data.getData();
+            if (icerik!=null){
                 if (adres==null){
-                    ayarlar.edit().putString(data.getData().toString(),null).apply();
+                    ayarlar.edit().putString("adres",adres).apply();
                 } else {
                     Uri uri = Uri.parse(adres);
                     resim.setImageURI(uri);
