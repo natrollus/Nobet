@@ -26,8 +26,13 @@ public class Widget extends AppWidgetProvider {
         switch (aksiyon){
             case "selam":
                 tostla(context,"selam dünya");
-                Intent resim = new Intent(context, ResmiGetir.class);
-                context.startActivity(resim);
+                try {
+                    Intent resim = new Intent(context, ResmiGetir.class);
+                    context.startActivity(resim);
+                } catch (Exception hata){
+                    tostla(context,"hata:"+hata.toString());
+                }
+
                 break;
             default:
                 tostla(context,"aks:"+aksiyon);
