@@ -67,11 +67,11 @@ public class ResmiGetir extends Activity {
             Uri icerik = data.getData();
             if (icerik!=null){
                 if (adres==null){
+                    adres = icerik.toString();
                     ayarlar.edit().putString("adres",adres).apply();
-                } else {
-                    Uri uri = Uri.parse(adres);
-                    resim.setImageURI(uri);
                 }
+                Uri uri = Uri.parse(adres);
+                resim.setImageURI(uri);
             }
             tostla(context,"adr:"+adres);
         } catch (Exception e) {
