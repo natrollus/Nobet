@@ -10,6 +10,9 @@ import android.widget.ImageView;
 
 import com.natrollus.nobet.R;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import static com.natrollus.nobet.araclar.Logla.tostla;
 
 public class ResmiGetir extends Activity {
@@ -48,7 +51,19 @@ public class ResmiGetir extends Activity {
                 tostla(context,"sıkıntı mevcut");
                 return;
             }
-            tostla(context,data.getData());
+            resmiAyarla(data, context);
+        }
+    }
+
+    private void resmiAyarla(Intent data, Context context) {
+        InputStream is = null;
+        try {
+            is = context.getContentResolver().openInputStream(data.getData());
+        } catch (FileNotFoundException e) {
+            tostla(context,"hata:"+e.toString());
+        }
+        if (is!=null){
+            resim.setImageURI(data.getData());
         }
     }
 }
