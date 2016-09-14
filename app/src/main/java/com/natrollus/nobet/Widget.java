@@ -25,7 +25,6 @@ public class Widget extends AppWidgetProvider {
         ayarla(context);
         switch (aksiyon){
             case "selam":
-                tostla(context,"selam dünya");
                 try {
                     Intent resim = new Intent(context, ResmiGetir.class);
                     resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -33,7 +32,9 @@ public class Widget extends AppWidgetProvider {
                 } catch (Exception hata){
                     tostla(context,"hata:"+hata.toString());
                 }
-
+                break;
+            case AppWidgetManager.ACTION_APPWIDGET_UPDATE:
+                tostla(context,"güncelledi");
                 break;
             default:
                 tostla(context,"aks:"+aksiyon);

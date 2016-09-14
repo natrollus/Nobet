@@ -3,7 +3,10 @@ package com.natrollus.nobet.aktivite;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,10 +22,14 @@ public class ResmiGetir extends Activity {
 
     ImageButton ayarla;
     ImageView resim;
+    SharedPreferences ayarlar;
+    String adres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ayarlar = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        adres = ayarlar.getString("adres",null);
         setContentView(R.layout.resim);
         ayarla = (ImageButton) findViewById(R.id.ayarla);
         resim = (ImageView) findViewById(R.id.resim);
@@ -60,7 +67,12 @@ public class ResmiGetir extends Activity {
         try {
             is = context.getContentResolver().openInputStream(data.getData());
             if (is!=null){
-                resim.setImageURI(data.getData());
+                if (adres==null){
+                    ayarlar.edit().putString(data.getData().toString(),null).apply();
+                } else {
+                    Uri uri = Uri.parse(adres);
+                    resim.setImageURI(uri);
+                }
             }
         } catch (Exception e) {
             tostla(context,"hata:"+e.toString());
