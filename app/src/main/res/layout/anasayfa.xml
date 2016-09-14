@@ -8,5 +8,5 @@
         android:id="@+id/resim"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/abc_btn_rating_star_off_mtrl_alpha" />
+        android:src="@drawable/ikon" />
 </RelativeLayout>
