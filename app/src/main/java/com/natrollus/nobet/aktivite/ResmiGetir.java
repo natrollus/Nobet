@@ -56,14 +56,14 @@ public class ResmiGetir extends Activity {
     }
 
     private void resmiAyarla(Intent data, Context context) {
-        InputStream is = null;
+        InputStream is;
         try {
             is = context.getContentResolver().openInputStream(data.getData());
-        } catch (FileNotFoundException e) {
+            if (is!=null){
+                resim.setImageURI(data.getData());
+            }
+        } catch (Exception e) {
             tostla(context,"hata:"+e.toString());
-        }
-        if (is!=null){
-            resim.setImageURI(data.getData());
         }
     }
 }
