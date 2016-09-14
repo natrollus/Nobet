@@ -34,6 +34,10 @@ public class ResmiGetir extends Activity {
         ayarla = (ImageButton) findViewById(R.id.ayarla);
         resim = (ImageView) findViewById(R.id.resim);
 
+        if (adres!=null){
+            resim.setImageURI(Uri.parse(adres));
+        }
+
         ayarla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
