@@ -5,8 +5,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/resim"
+        android:id="@+id/getir"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ikon" />
+        android:src="@drawable/ikon"
+        android:contentDescription="@string/getir_resmine_aciklama" />
 </RelativeLayout>

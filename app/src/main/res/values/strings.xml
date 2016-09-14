@@ -1,3 +1,6 @@
 <resources>
     <string name="isim">Nöbet</string>
+    <string name="getir_resmine_aciklama">lan illa icerik yazcakmisiz buraya,tiklanacak ana resim bu iste</string>
+    <string name="ayarlar_resim_aciklama">ha bide buna aciklama lazimmis,bu imagebuttonumuz da kendisini ayarlar olarak itham ediyo</string>
+    <string name="resim_aciklama">ha buda ortadaki resmin gelecegi imageview</string>
 </resources>
