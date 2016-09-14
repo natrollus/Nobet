@@ -28,6 +28,7 @@ public class Widget extends AppWidgetProvider {
                 tostla(context,"selam dünya");
                 try {
                     Intent resim = new Intent(context, ResmiGetir.class);
+                    resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(resim);
                 } catch (Exception hata){
                     tostla(context,"hata:"+hata.toString());
