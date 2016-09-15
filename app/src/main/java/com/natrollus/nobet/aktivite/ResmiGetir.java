@@ -70,10 +70,8 @@ public class ResmiGetir extends Activity {
         try {
             Uri icerik = data.getData();
             if (icerik!=null){
-                if (adres==null){
-                    adres = icerik.toString();
-                    ayarlar.edit().putString("adres",adres).apply();
-                }
+                adres = icerik.toString();
+                ayarlar.edit().putString("adres",adres).apply();
                 Uri uri = Uri.parse(adres);
                 resim.setImageURI(uri);
             }
