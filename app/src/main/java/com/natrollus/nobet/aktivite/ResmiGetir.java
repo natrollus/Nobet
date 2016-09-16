@@ -72,6 +72,7 @@ public class ResmiGetir extends Activity {
             if (icerik!=null){
                 adres = icerik.toString();
                 ayarlar.edit().putString("adres",adres).apply();
+				ayarlar.edit().putInt("kac",0).apply();
                 Uri uri = Uri.parse(adres);
                 resim.setImageURI(uri);
             }

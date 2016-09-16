@@ -11,17 +11,20 @@ import android.content.*;
 import com.natrollus.nobet.aktivite.ResmiGetir;
 
 import static com.natrollus.nobet.araclar.Logla.tostla;
+import android.preference.*;
 
 public class Widget extends AppWidgetProvider {
 	RemoteViews rv;
 	AppWidgetManager awm;
 	ComponentName cn;
+	SharedPreferences ayarlar;
 	
 	
     @Override
     public void onReceive(Context context, Intent intent) {
 
         String aksiyon = intent.getAction();
+		
         ayarla(context);
         switch (aksiyon){
             case "selam":
@@ -29,6 +32,7 @@ public class Widget extends AppWidgetProvider {
                     Intent resim = new Intent(context, ResmiGetir.class);
                     resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(resim);
+					sayac();
                 } catch (Exception hata){
                     tostla(context,"hata:"+hata.toString());
                 }
@@ -45,6 +49,12 @@ public class Widget extends AppWidgetProvider {
 
     }
 
+	private void sayac() {
+		int kac = ayarlar.getInt("kac", 0);
+		ayarlar.edit().putInt("kac", (kac + 1)).apply();
+		rv.setTextViewText(R.id.sayac, "" + kac);
+	}
+
     private void butonAyarla(Context context) {
         Intent hazirlik = new Intent("selam",null,context,Widget.class);
         PendingIntent bekleyen = PendingIntent.getBroadcast(context,0,hazirlik,0);
@@ -55,6 +65,7 @@ public class Widget extends AppWidgetProvider {
         awm = AppWidgetManager.getInstance(context);
         cn = new ComponentName(context,getClass());
         rv = new RemoteViews(context.getPackageName(), R.layout.widget);
+		ayarlar = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     private void tazele() {
