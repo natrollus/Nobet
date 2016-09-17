@@ -7,12 +7,21 @@
         android:allowBackup="false"
         android:icon="@drawable/ikon"
         android:label="@string/isim"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.NoTitleBar">
 
         <activity android:name=".aktivite.ResmiGetir">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <data android:host="com.natrollus" android:scheme="nobet"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".aktivite.Paylasim">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
         
