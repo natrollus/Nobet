@@ -22,7 +22,8 @@ public class Paylasim extends Activity {
         Intent icerik = getIntent();
         String yaz;
         yaz = "data:" + icerik.getData() + "\ntip:" +icerik.getType() + "\ndatastirng:" + icerik.getDataString();
-        yaz += "\n\n--extras--\n";
+        yaz+= "\naksiyon:" + icerik.getAction();
+		yaz += "\n\n--extras--\n";
         Bundle bundle = icerik.getExtras();
         for (String key: bundle.keySet()){
             Object deger = bundle.get(key);

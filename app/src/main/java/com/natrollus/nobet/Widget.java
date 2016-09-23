@@ -22,43 +22,53 @@ public class Widget extends AppWidgetProvider {
 	
     @Override
     public void onReceive(Context context, Intent intent) {
-
         String aksiyon = intent.getAction();
-		
         ayarla(context);
         switch (aksiyon){
-            case "selam":
-                try {
-                    Intent resim = new Intent(context, ResmiGetir.class);
-                    resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(resim);
-					sayac();
-                } catch (Exception hata){
-                    tostla(context,"hata:"+hata.toString());
-                }
+            case "getir":
+                getir(context);
                 break;
             case AppWidgetManager.ACTION_APPWIDGET_UPDATE:
-                tostla(context,"güncelledi");
+                sayac(0);
+				tostla(context,"güncelledi");
                 break;
+			case "yap":
+				tostla(context,"ne yapcam?");
+				break;
             default:
                 tostla(context,"aks:"+aksiyon);
         }
 
-        butonAyarla(context);
+        butonAyarla(context,"getir",R.id.getir);
+		butonAyarla(context,"yap",R.id.yap);
         tazele();
-
     }
 
-	private void sayac() {
+	private void getir(Context context)
+	{
+		try
+		{
+			Intent resim = new Intent(context, ResmiGetir.class);
+			resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(resim);
+			sayac(1);
+		}
+		catch (Exception hata)
+		{
+			tostla(context, "hata:" + hata.toString());
+		}
+	}
+
+	private void sayac(int artim) {
 		int kac = ayarlar.getInt("kac", 0);
-		ayarlar.edit().putInt("kac", (kac + 1)).apply();
+		ayarlar.edit().putInt("kac", (kac + artim)).apply();
 		rv.setTextViewText(R.id.sayac, "" + kac);
 	}
 
-    private void butonAyarla(Context context) {
-        Intent hazirlik = new Intent("selam",null,context,Widget.class);
+    private void butonAyarla(Context context,String aksiyon,int id) {
+        Intent hazirlik = new Intent(aksiyon,null,context,Widget.class);
         PendingIntent bekleyen = PendingIntent.getBroadcast(context,0,hazirlik,0);
-        rv.setOnClickPendingIntent(R.id.getir,bekleyen);
+        rv.setOnClickPendingIntent(id,bekleyen);
     }
 
     private void ayarla(Context context) {

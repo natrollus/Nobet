@@ -6,7 +6,7 @@
 
 	<ImageView
 		android:layout_width="wrap_content"
-		android:layout_height="62dp"
+		android:layout_height="46dp"
 		android:id="@+id/getir"
 		android:src="@drawable/ikon"
 		android:contentDescription="@string/getir_resmine_aciklama"
@@ -21,8 +21,18 @@
 		android:textStyle="bold"
 		android:textSize="15sp"
 		android:layout_centerInParent="true"
-		android:paddingStart="6dp"
-		android:textColor="#000000"/>
+		android:textColor="#000000"
+		android:layout_alignLeft="@id/getir"
+		android:layout_alignRight="@id/getir"
+		android:gravity="center"/>
+
+	<Button
+		android:layout_height="38dp"
+		android:layout_width="70dp"
+		android:text="yap"
+		android:layout_below="@id/getir"
+		android:layout_centerHorizontal="true"
+		android:id="@+id/yap"/>
 
 </RelativeLayout>
 
