@@ -26,6 +26,7 @@ public class Widget extends AppWidgetProvider {
         ayarla(context);
         switch (aksiyon){
             case "getir":
+                //testing
                 getir(context);
                 break;
             case AppWidgetManager.ACTION_APPWIDGET_UPDATE:
