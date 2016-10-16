@@ -12,7 +12,9 @@ import com.natrollus.nobet.aktivite.ResmiGetir;
 
 import static com.natrollus.nobet.araclar.Logla.tostla;
 import static com.natrollus.nobet.araclar.Ayarlar.*;
+import static com.natrollus.nobet.araclar.Ortak.*;
 import android.preference.*;
+import com.natrollus.nobet.araclar.*;
 
 public class Widget extends AppWidgetProvider {
 	RemoteViews rv;
@@ -29,7 +31,7 @@ public class Widget extends AppWidgetProvider {
         ayarla();
         switch (aksiyon){
             case "getir":
-                //testing naber la
+                //testing naber la testing
                 getir();
                 break;
             case AppWidgetManager.ACTION_APPWIDGET_UPDATE:
@@ -37,33 +39,42 @@ public class Widget extends AppWidgetProvider {
 				tostla(context,"güncelledi");
                 break;
 			case "yap":
-				tostla(context,"ne yapcam?");
+				konumGetir(context);
+				break;
+			case "yan":
+				tostla(context,"yan gider gelir ahaha");
 				break;
             default:
                 tostla(context,"aks:"+aksiyon);
         }
-
+		butonAyarla("yan",R.id.yan);
         butonAyarla("getir",R.id.getir);
 		butonAyarla("yap",R.id.yap);
         tazele();
     }
 
+	private void konumGetir(Context context) {
+		try {
+			Konum konum = new Konum(context);
+			konum.getir();
+		} catch (Exception hata){
+			tostla(context,"konum getir hata:" + hata.toString());
+		}
+	}
+
 	private void getir() {
 		try {
-			Intent resim = new Intent(context, ResmiGetir.class);
-			resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(resim);
+			aktiviteBaslat(context, ResmiGetir.class);
 			sayac(1);
 		}
 		catch (Exception hata) {
-			tostla(context, "hata:" + hata.toString());
+			tostla(context, "getirde hata:" + hata.toString());
 		}
 	}
 
 	private void sayac(int artim) {
-		degerEkle(context,"kac",(int)degerGetir(context,"kac",0)+artim);
-		int kac = ayarlar.getInt("kac", 0);
-		ayarlar.edit().putInt("kac", (kac + artim)).apply();
+		int kac = degerGetir(context,"kac",0);
+		degerEkle(context,"kac",(int) degerGetir(context,"kac",0)+artim);
 		rv.setTextViewText(R.id.sayac, "" + kac);
 	}
 
@@ -82,4 +93,5 @@ public class Widget extends AppWidgetProvider {
     private void tazele() {
         awm.updateAppWidget(cn,rv);
     }
+	
 }

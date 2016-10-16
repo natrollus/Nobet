@@ -5,12 +5,13 @@
 	android:layout_height="match_parent">
 
 	<ImageView
-		android:layout_width="wrap_content"
+		android:layout_width="70dp"
 		android:layout_height="46dp"
 		android:id="@+id/getir"
 		android:src="@drawable/ikon"
 		android:contentDescription="@string/getir_resmine_aciklama"
-		android:layout_centerInParent="true"/>
+		android:layout_centerVertical="true"
+		android:layout_alignParentLeft="true"/>
 
 	<TextView
 		android:layout_height="wrap_content"
@@ -31,8 +32,18 @@
 		android:layout_width="70dp"
 		android:text="yap"
 		android:layout_below="@id/getir"
-		android:layout_centerHorizontal="true"
 		android:id="@+id/yap"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="30dp"
+		android:layout_toRightOf="@id/getir"
+		android:layout_alignTop="@id/getir"
+		android:layout_alignBottom="@id/yap"
+		android:background="#CCD2B6B3"
+		android:shadowRadius="1.0"
+		android:id="@+id/yan"
+		android:layout_margin="2dp"/>
 
 </RelativeLayout>
 

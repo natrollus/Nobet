@@ -2,8 +2,9 @@
     package="com.natrollus.nobet">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <application
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<application
         android:allowBackup="false"
         android:icon="@drawable/ikon"
         android:label="@string/isim"
@@ -24,7 +25,9 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-        
+		
+		<activity android:name=".aktivite.KonumAcma" />
+        <activity android:name=".aktivite.LogActivite" />
         <receiver android:name=".Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
