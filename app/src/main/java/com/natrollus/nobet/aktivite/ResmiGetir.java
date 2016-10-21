@@ -16,25 +16,29 @@ import com.natrollus.nobet.R;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import static com.natrollus.nobet.araclar.Ayarlar.degerEkle;
+import static com.natrollus.nobet.araclar.Ayarlar.degerGetir;
+import static com.natrollus.nobet.araclar.Logla.logla;
 import static com.natrollus.nobet.araclar.Logla.tostla;
 
 public class ResmiGetir extends Activity {
 
     ImageButton ayarla;
     ImageView resim;
-    SharedPreferences ayarlar;
     String adres;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ayarlar = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        adres = ayarlar.getString("adres",null);
+        context = getApplicationContext();
+        adres = (String) degerGetir(context,"adres","bos");
+        tostla(context,"acikla:"+adres);
         setContentView(R.layout.resim);
         ayarla = (ImageButton) findViewById(R.id.ayarla);
         resim = (ImageView) findViewById(R.id.resim);
 
-        if (adres!=null){
+        if (adres!=null && !adres.equals("bos")){
             resim.setImageURI(Uri.parse(adres));
         }
 
@@ -71,8 +75,9 @@ public class ResmiGetir extends Activity {
             Uri icerik = data.getData();
             if (icerik!=null){
                 adres = icerik.toString();
-                ayarlar.edit().putString("adres",adres).apply();
-				ayarlar.edit().putInt("kac",0).apply();
+                logla("adres bu:"+adres);
+                degerEkle(context,"adres",adres);
+                degerEkle(context,"kac",0);
                 Uri uri = Uri.parse(adres);
                 resim.setImageURI(uri);
             }

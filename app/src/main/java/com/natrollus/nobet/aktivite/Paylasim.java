@@ -16,7 +16,6 @@ public class Paylasim extends Activity {
 
     TextView cikti;
 	Context context;
-	SharedPreferences ayarlar;
 	String adres;
 
     @Override

@@ -1,4 +1,5 @@
 package com.natrollus.nobet.araclar;
+import android.app.Activity;
 import android.location.*;
 import android.os.*;
 import android.content.*;
@@ -6,59 +7,57 @@ import android.content.*;
 import static com.natrollus.nobet.araclar.Logla.*;
 import static com.natrollus.nobet.araclar.Ortak.*;
 import android.provider.*;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.natrollus.nobet.aktivite.*;
 
-public class Konum implements LocationListener {
-	Context context;
-	LocationManager lm;
-	boolean aktif = false;
-	
-	public Konum(Context context){
-		this.context = context;
-		lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-	}
-	
-	public void getir(){
-		if (lm!=null){
-			aktif = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-			if(aktif){
-				//bos
-			} else {
-				new Calistir().execute();
-			}
+public class Konum extends Activity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener,LocationListener {
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		final LocationManager locationManager = (LocationManager) getSystemService(Konum.LOCATION_SERVICE);
+		if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+			new KonumIslem(Konum.this).execute();
 		}
 	}
-	
-	@Override
-	public void onLocationChanged(Location p1) {
-		// TODO: Implement this method
-	}
 
 	@Override
-	public void onStatusChanged(String p1, int p2, Bundle p3) {
-		// TODO: Implement this method
+	public void onLocationChanged(Location location) {
+
 	}
 
 	@Override
-	public void onProviderEnabled(String p1) {
-		// TODO: Implement this method
+	public void onStatusChanged(String s, int i, Bundle bundle) {
+
 	}
 
 	@Override
-	public void onProviderDisabled(String p1) {
-		// TODO: Implement this method
-	}
-	
-	private class Calistir extends AsyncTask<Void,Void,Void>
-	{
+	public void onProviderEnabled(String s) {
 
-		@Override
-		protected Void doInBackground(Void[] p1) {
-			aktiviteBaslat(context,KonumAcma.class);
-			return null;
-		}
-		
-	
 	}
 
+	@Override
+	public void onProviderDisabled(String s) {
+
+	}
+
+	@Override
+	public void onConnected(@Nullable Bundle bundle) {
+
+	}
+
+	@Override
+	public void onConnectionSuspended(int i) {
+
+	}
+
+	@Override
+	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+	}
 }

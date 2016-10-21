@@ -73,7 +73,7 @@ public class Widget extends AppWidgetProvider {
 	}
 
 	private void sayac(int artim) {
-		int kac = degerGetir(context,"kac",0);
+		int kac = (int) degerGetir(context,"kac",0);
 		degerEkle(context,"kac",(int) degerGetir(context,"kac",0)+artim);
 		rv.setTextViewText(R.id.sayac, "" + kac);
 	}

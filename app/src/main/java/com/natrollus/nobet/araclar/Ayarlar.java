@@ -3,7 +3,7 @@ import android.content.*;
 import android.preference.*;
 
 public class Ayarlar {
-	public static SharedPreferences ayarGetir(Context context) {
+	private static SharedPreferences ayarGetir(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context);
 	}
 	
@@ -11,7 +11,7 @@ public class Ayarlar {
 		ayarGetir(context).edit().putString(adi,deger).apply();
 	}
 	
-	public static void degerEkle(Context context,String adi,int deger) {
+	public static void degerEkle(Context context, String adi, int deger) {
 		ayarGetir(context).edit().putInt(adi,deger).apply();
 	}
 	

@@ -8,10 +8,4 @@ public class Ortak {
 		resim.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(resim);
 	}
-	public static void aktiviteLogla(Context context,Object log){
-		Intent logcu = new Intent(context,LogActivite.class);
-		logcu.putExtra("log",(String) log);
-		logcu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startActivity(logcu);
-	}
 }
