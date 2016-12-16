@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
 		
-		<activity android:name=".aktivite.KonumIslem" />
+		<activity android:name=".aktivite.Konum" />
         <activity android:name=".aktivite.LogActivite" />
         <receiver android:name=".Widget">
             <intent-filter>

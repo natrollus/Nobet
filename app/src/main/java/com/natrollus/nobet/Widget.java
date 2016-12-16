@@ -8,13 +8,12 @@ import android.app.*;
 import android.appwidget.*;
 import android.content.*;
 
+import com.natrollus.nobet.aktivite.Konum;
 import com.natrollus.nobet.aktivite.ResmiGetir;
 
 import static com.natrollus.nobet.araclar.Logla.tostla;
 import static com.natrollus.nobet.araclar.Ayarlar.*;
 import static com.natrollus.nobet.araclar.Ortak.*;
-import android.preference.*;
-import com.natrollus.nobet.araclar.*;
 
 public class Widget extends AppWidgetProvider {
 	RemoteViews rv;
@@ -55,8 +54,7 @@ public class Widget extends AppWidgetProvider {
 
 	private void konumGetir(Context context) {
 		try {
-			Konum konum = new Konum(context);
-			konum.getir();
+			aktiviteBaslat(context,Konum.class);
 		} catch (Exception hata){
 			tostla(context,"konum getir hata:" + hata.toString());
 		}
